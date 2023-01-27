@@ -10,7 +10,7 @@ namespace SolTechnology.Time
     {
         //TODO
 
-        //1) finalize get timezone from DateTime
+        //DONE) finalize get timezone from DateTime
 
         //2) create enum of timezones 
 
@@ -22,9 +22,16 @@ namespace SolTechnology.Time
 
         //6) ToDateTime extensions
 
-        //7) Article
+        //7) Parse extensions
 
-        //8) Possibility to define own time zone? 
+        //8) CI/CD
 
+        //9) Article
+
+        //10) Possibility to define own time zone? 
+
+
+        //Features:
+        // Unique time identification: no "local" time, always sets timezone, assumes utc if unspecified
     }
 }

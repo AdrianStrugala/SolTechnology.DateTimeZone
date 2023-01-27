@@ -7,7 +7,7 @@
         public TimeZoneInfo Zone { get; init; }
 
 
-        public DateTimeZone(DateOnly date, TimeOnly time, TimeZoneInfo zone)
+        public DateTimeZone(DateOnly date, TimeOnly time, TimeZoneInfo zone) : this()
         {
             Date = date;
             Time = time;
@@ -21,21 +21,31 @@
             Zone = TimeZoneInfo.Utc;
         }
 
-        public DateTimeZone(DateTime dateTime)
+        public DateTimeZone(DateTime dateTime) : this()
         {
             Date = DateOnly.FromDateTime(dateTime);
             Time = TimeOnly.FromDateTime(dateTime);
 
-            //here - get timezone from DateTime
-
-            Zone = TimeZoneInfo.Utc;
+            Zone = dateTime.Kind switch
+            {
+                DateTimeKind.Local => IdentifyLocalTimeZone(),
+                _ => TimeZoneInfo.Utc
+            };
         }
 
-        public DateTimeZone(DateTime dateTime, TimeZoneInfo zone)
+        public DateTimeZone(DateTime dateTime, TimeZoneInfo zone) : this()
         {
             Date = DateOnly.FromDateTime(dateTime);
             Time = TimeOnly.FromDateTime(dateTime);
             Zone = zone;
+        }
+
+        private TimeZoneInfo IdentifyLocalTimeZone()
+        {
+            var localTimezone = TimeZoneInfo.Local;
+
+            var result = TimeZoneInfo.FindSystemTimeZoneById(localTimezone.Id);
+            return result;
         }
     }
 }
