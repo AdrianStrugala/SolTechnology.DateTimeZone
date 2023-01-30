@@ -1,6 +1,6 @@
 ﻿namespace SolTechnology.Time
 {
-    public record struct DateTimeZone
+    public readonly partial record struct DateTimeZone
     {
         public DateOnly Date { get; init; }
         public TimeOnly Time { get; init; }
