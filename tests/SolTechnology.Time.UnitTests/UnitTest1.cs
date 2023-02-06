@@ -6,7 +6,7 @@ namespace SolTechnology.Time.UnitTests
         public void Test1()
         {
             var x = TimeZoneInfo.GetSystemTimeZones();
-            var y = x;
+            var y = x.Select(a => a.DisplayName);
 
             var xdf = TimeZoneInfo.FindSystemTimeZoneById("Central European Standard Time");
 

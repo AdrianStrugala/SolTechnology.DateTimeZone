@@ -10,8 +10,8 @@ namespace SolTechnology.Time
             var dateTimeWithZone = TimeZoneInfo.ConvertTime(dateTimeUtc, Zone);
 
             var date =  dateTimeWithZone.ToString(CultureInfo.InvariantCulture);
-            var zone = Zone.StandardName;
-            return $"{date} [{zone}]";
+            var zone = Zone.Id;
+            return $"{date} ({zone})";
         }
 
         public string ToString(string? format)

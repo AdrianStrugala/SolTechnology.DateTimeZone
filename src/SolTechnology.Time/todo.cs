@@ -14,11 +14,11 @@ namespace SolTechnology.Time
 
         //2) create enum of timezones 
 
-        //3) add ToString() with formatting extensions
+        //DONE~) add ToString() with formatting extensions
 
         //4) arithmetic operations: + - compare
 
-        //5) add convertion between time zones (in specific: utc)
+        //5) add conversion between time zones (in specific: utc)
 
         //6) ToDateTime extensions
 

@@ -20,5 +20,21 @@ namespace SolTechnology.Time.UnitTests
             //Assert
             result.Should().Be("04 02, 2005 21:37:00 +02:00");
         }
+
+        [Fact]
+        public void ToString_applies_default_formatting()
+        {
+            //Arrange 
+            var date = new DateOnly(2005, 04, 02);
+            var time = new TimeOnly(21, 37);
+            var zone = TimeZoneInfo.Local;
+
+
+            //Act
+            var result = new DateTimeZone(date, time, zone).ToString();
+
+            //Assert
+            result.Should().Be($"04/02/2005 21:37:00 ({zone.Id})");
+        }
     }
 }
