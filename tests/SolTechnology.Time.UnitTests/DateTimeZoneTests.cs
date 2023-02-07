@@ -1,4 +1,5 @@
 using FluentAssertions;
+using SolTechnology.Time.Zone;
 
 namespace SolTechnology.Time.UnitTests
 {
@@ -89,6 +90,25 @@ namespace SolTechnology.Time.UnitTests
             result.Date.Should().Be(DateOnly.FromDateTime(dateTime));
             result.Time.Should().Be(TimeOnly.FromDateTime(dateTime));
             result.Zone.Should().Be(TimeZoneInfo.Utc);
+        }
+
+        [Fact]
+        public void Sets_correct_zone_by_ZoneSelector()
+        {
+            //Arrange 
+            var date = new DateOnly(2005, 04, 02);
+            var time = new TimeOnly(21, 37);
+            var zone = ZoneSelector.IndiaStandardTime;
+
+
+            //Act
+            var result = new DateTimeZone(date, time, zone);
+
+
+            //Assert
+            result.Date.Should().Be(date);
+            result.Time.Should().Be(time);
+            result.Zone.Should().Be(TimeZoneInfo.FindSystemTimeZoneById("India Standard Time"));
         }
     }
 }

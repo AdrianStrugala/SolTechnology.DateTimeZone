@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SolTechnology.Time.Zone;
 
 namespace SolTechnology.Time.UnitTests
 {
@@ -10,7 +11,7 @@ namespace SolTechnology.Time.UnitTests
             //Arrange 
             var date = new DateOnly(2005, 04, 02);
             var time = new TimeOnly(21, 37);
-            var zone = TimeZoneInfo.Local;
+            var zone = ZoneSelector.CentralAmericaStandardTime;
 
 
             //Act
@@ -18,7 +19,7 @@ namespace SolTechnology.Time.UnitTests
 
 
             //Assert
-            result.Should().Be("04 02, 2005 21:37:00 +02:00");
+            result.Should().Be("04 02, 2005 21:37:00 -06:00");
         }
 
         [Fact]
@@ -27,14 +28,14 @@ namespace SolTechnology.Time.UnitTests
             //Arrange 
             var date = new DateOnly(2005, 04, 02);
             var time = new TimeOnly(21, 37);
-            var zone = TimeZoneInfo.Local;
+            var zone = ZoneSelector.CentralAmericaStandardTime;
 
 
             //Act
             var result = new DateTimeZone(date, time, zone).ToString();
 
             //Assert
-            result.Should().Be($"04/02/2005 21:37:00 ({zone.Id})");
+            result.Should().Be($"04/02/2005 21:37:00 (Central America Standard Time)");
         }
     }
 }

@@ -12,9 +12,9 @@ namespace SolTechnology.Time
 
         //DONE) finalize get timezone from DateTime
 
-        //2) create enum of timezones 
+        //DONE) create enum of timezones 
 
-        //DONE~) add ToString() with formatting extensions
+        //DONE~) add ToString() with formatting extensions => DateTime do not recognize different zones than local. Always prints zone as local or utc. Pain tbh
 
         //4) arithmetic operations: + - compare
 

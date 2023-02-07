@@ -1,4 +1,6 @@
-﻿namespace SolTechnology.Time
+﻿using SolTechnology.Time.Zone;
+
+namespace SolTechnology.Time
 {
     public readonly partial record struct DateTimeZone
     {
@@ -12,6 +14,13 @@
             Date = date;
             Time = time;
             Zone = zone;
+        }
+
+        public DateTimeZone(DateOnly date, TimeOnly time, ZoneSelector zoneSelector) : this()
+        {
+            Date = date;
+            Time = time;
+            Zone = TimeZoneInfo.FindSystemTimeZoneById(zoneSelector.ToString());
         }
 
         public DateTimeZone(DateOnly date, TimeOnly time)
