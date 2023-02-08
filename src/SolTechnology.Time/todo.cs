@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SolTechnology.Time
+﻿namespace SolTechnology.Time
 {
     internal class todo
     {
@@ -14,7 +8,7 @@ namespace SolTechnology.Time
 
         //DONE) create enum of timezones 
 
-        //DONE~) add ToString() with formatting extensions => DateTime do not recognize different zones than local. Always prints zone as local or utc. Pain tbh
+        //DONE) add ToString() with formatting extensions
 
         //4) arithmetic operations: + - compare
 
