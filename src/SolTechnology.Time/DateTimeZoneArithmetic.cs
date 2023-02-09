@@ -2,70 +2,71 @@
 {
     public readonly partial record struct DateTimeZone
     {
-        public void AddYears(int years)
+        public DateTimeZone AddYears(int years)
         {
-            Date.AddYears(years);
+            return new DateTimeZone(Date.AddYears(years), Time, Zone);
         }
 
-        public void AddMonths(int months)
+        public DateTimeZone AddMonths(int months)
         {
-            Date.AddMonths(months);
+            return new DateTimeZone(Date.AddMonths(months), Time, Zone);
         }
 
-        public void AddDays(int days)
+        public DateTimeZone AddDays(int days)
         {
-            Date.AddDays(days);
+            return new DateTimeZone(Date.AddDays(days), Time, Zone);
         }
 
-        public void AddHours(double hours)
+        public DateTimeZone AddHours(double hours)
         {
-            Time.AddHours(hours, out var wrappedDays);
-            Date.AddDays(wrappedDays);
+            var time = Time.AddHours(hours, out var wrappedDays);
+
+            return new DateTimeZone(Date.AddDays(wrappedDays), time, Zone);
         }
 
-        public void AddMinutes(double minutes)
+        public DateTimeZone AddMinutes(double minutes)
         {
-            Time.AddMinutes(minutes, out var wrappedDays);
-            Date.AddDays(wrappedDays);
+            var time = Time.AddMinutes(minutes, out var wrappedDays);
+            return new DateTimeZone(Date.AddDays(wrappedDays), time, Zone);
         }
 
-        public void AddSeconds(double seconds)
+        public DateTimeZone AddSeconds(double seconds)
         {
-            Time.AddMinutes(seconds / 60, out var wrappedDays);
-            Date.AddDays(wrappedDays);
+            var time = Time.AddMinutes(seconds / 60, out var wrappedDays);
+            return new DateTimeZone(Date.AddDays(wrappedDays), time, Zone);
         }
 
-        public void AddMilliseconds(double milliseconds)
+        public DateTimeZone AddMilliseconds(double milliseconds)
         {
-            Time.AddMinutes(milliseconds / 6000, out var wrappedDays);
-            Date.AddDays(wrappedDays);
-
+            var time = Time.AddMinutes(milliseconds / 60000, out var wrappedDays);
+            return new DateTimeZone(Date.AddDays(wrappedDays), time, Zone);
         }
 
-        public void AddTicks(long ticks)
+        public DateTimeZone AddTicks(long ticks)
         {
             var ticksTimespan = new TimeSpan(ticks);
-            Time.Add(ticksTimespan, out var wrappedDays);
-            Date.AddDays(wrappedDays);
+            var time = Time.Add(ticksTimespan, out var wrappedDays);
+            return new DateTimeZone(Date.AddDays(wrappedDays), time, Zone);
         }
 
-        public void Add(TimeOnly time)
+        public DateTimeZone Add(TimeOnly time)
         {
-            Time.Add(time.ToTimeSpan(), out var wrappedDays);
-            Date.AddDays(wrappedDays);
+            var newTime = Time.Add(time.ToTimeSpan(), out var wrappedDays);
+            return new DateTimeZone(Date.AddDays(wrappedDays), newTime, Zone);
         }
 
-        public void Add(DateOnly date)
+        public DateTimeZone Add(DateOnly date)
         {
-            Date.AddYears(date.Year);
-            Date.AddMonths(date.Month);
-            Date.AddDays(date.Day);
+            var newDate = Date.AddYears(date.Year);
+            newDate = newDate.AddMonths(date.Month);
+            newDate = newDate.AddDays(date.Day);
+            return new DateTimeZone(newDate, Time, Zone);
         }
 
-        public void Add(TimeSpan time)
+        public DateTimeZone Add(TimeSpan time)
         {
-            Time.Add(time, out var wrappedDays);
-            Date.AddDays(wrappedDays);
+            var newTime = Time.Add(time, out var wrappedDays);
+            return new DateTimeZone(Date.AddDays(wrappedDays), newTime, Zone);
         }
     }
 }
