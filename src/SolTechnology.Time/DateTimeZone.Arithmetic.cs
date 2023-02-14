@@ -1,4 +1,6 @@
-﻿namespace SolTechnology.Time
+﻿using System.Reflection;
+
+namespace SolTechnology.Time
 {
     public readonly partial record struct DateTimeZone
     {
@@ -67,6 +69,41 @@
         {
             var newTime = Time.Add(time, out var wrappedDays);
             return new DateTimeZone(Date.AddDays(wrappedDays), newTime, Zone);
+        }
+
+
+        //OPERATORS
+
+        public static bool operator >(DateTimeZone a, DateTimeZone b)
+        {
+            var aUtc = a.ToUtc();
+            var bUtc = b.ToUtc();
+
+            return aUtc.Date.ToDateTime(aUtc.Time) > bUtc.Date.ToDateTime(bUtc.Time);
+        }
+
+        public static bool operator <(DateTimeZone a, DateTimeZone b)
+        {
+            var aUtc = a.ToUtc();
+            var bUtc = b.ToUtc();
+
+            return aUtc.Date.ToDateTime(aUtc.Time) < bUtc.Date.ToDateTime(bUtc.Time);
+        }
+
+        public static bool operator >=(DateTimeZone a, DateTimeZone b)
+        {
+            var aUtc = a.ToUtc();
+            var bUtc = b.ToUtc();
+
+            return aUtc.Date.ToDateTime(aUtc.Time) >= bUtc.Date.ToDateTime(bUtc.Time);
+        }
+
+        public static bool operator <=(DateTimeZone a, DateTimeZone b)
+        {
+            var aUtc = a.ToUtc();
+            var bUtc = b.ToUtc();
+
+            return aUtc.Date.ToDateTime(aUtc.Time) <= bUtc.Date.ToDateTime(bUtc.Time);
         }
     }
 }

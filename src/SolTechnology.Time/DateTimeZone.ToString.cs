@@ -34,15 +34,8 @@ namespace SolTechnology.Time
             return result.ToString();
         }
 
-        // private DateTime GetUtcDateTime()
-        // {
-        //     var dateTime = TimeZoneInfo.ConvertTimeToUtc(Date.ToDateTime(Time, DateTimeKind.Utc));
-        //     var utcOffset = Zone.GetUtcOffset(dateTime);
-        //     dateTime = dateTime.Add(-utcOffset);
-        //     return dateTime;
-        // }
 
-        internal static int FindCount(string format, int pos, char patternChar)
+        private static int FindCount(string format, int pos, char patternChar)
         {
             int len = format.Length;
             int index = pos + 1;
@@ -53,7 +46,6 @@ namespace SolTechnology.Time
 
             return index - pos;
         }
-
 
         private static void FormatCustomizedTimeZone(TimeSpan offset, int count, StringBuilder result)
         {

@@ -260,5 +260,173 @@ namespace SolTechnology.Time.UnitTests
             result.Time.Second.Should().Be(01);
             result.Zone.Id.Should().Be("Central America Standard Time");
         }
+
+        [Theory]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC", false)]
+
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 12:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "03 02, 2005 22:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 12:37:00", "UTC+12", "04 02, 2005 21:37:00", "UTC", true)]
+
+        [InlineData("05 02, 2005 21:37:00", "UTC", "05 02, 2005 22:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "05 02, 2005 09:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC+12", false)]
+     
+        public void Greater_than_operator_is_working(string leftDate, string leftTimeZone, string rightDate, string rightTimeZone, bool expected)
+        {
+            //Arrange 
+            var leftDateTime = DateTime.Parse(leftDate);
+            var left = new DateTimeZone(leftDateTime, TimeZoneInfo.FindSystemTimeZoneById(leftTimeZone));
+
+            var rightDateTime = DateTime.Parse(rightDate);
+            var right = new DateTimeZone(rightDateTime, TimeZoneInfo.FindSystemTimeZoneById(rightTimeZone));
+
+            //Act
+            var result = left > right;
+
+
+            //Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC", false)]
+
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 12:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "03 02, 2005 22:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 12:37:00", "UTC+12", "04 02, 2005 21:37:00", "UTC", false)]
+
+        [InlineData("05 02, 2005 21:37:00", "UTC", "05 02, 2005 22:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "05 02, 2005 09:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC+12", true)]
+      
+        public void Less_than_operator_is_working(string leftDate, string leftTimeZone, string rightDate, string rightTimeZone, bool expected)
+        {
+            //Arrange 
+            var leftDateTime = DateTime.Parse(leftDate);
+            var left = new DateTimeZone(leftDateTime, TimeZoneInfo.FindSystemTimeZoneById(leftTimeZone));
+
+            var rightDateTime = DateTime.Parse(rightDate);
+            var right = new DateTimeZone(rightDateTime, TimeZoneInfo.FindSystemTimeZoneById(rightTimeZone));
+
+            //Act
+            var result = left < right;
+
+
+            //Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC", true)]
+
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 12:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "03 02, 2005 22:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 12:37:00", "UTC+12", "04 02, 2005 21:37:00", "UTC", false)]
+
+        [InlineData("05 02, 2005 21:37:00", "UTC", "05 02, 2005 22:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "05 02, 2005 09:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC+12", true)]
+
+        public void Less_or_equal_than_operator_is_working(string leftDate, string leftTimeZone, string rightDate, string rightTimeZone, bool expected)
+        {
+            //Arrange 
+            var leftDateTime = DateTime.Parse(leftDate);
+            var left = new DateTimeZone(leftDateTime, TimeZoneInfo.FindSystemTimeZoneById(leftTimeZone));
+
+            var rightDateTime = DateTime.Parse(rightDate);
+            var right = new DateTimeZone(rightDateTime, TimeZoneInfo.FindSystemTimeZoneById(rightTimeZone));
+
+            //Act
+            var result = left <= right;
+
+
+            //Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC", true)]
+
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 12:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "03 02, 2005 22:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 12:37:00", "UTC+12", "04 02, 2005 21:37:00", "UTC", true)]
+
+        [InlineData("05 02, 2005 21:37:00", "UTC", "05 02, 2005 22:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "05 02, 2005 09:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC+12", false)]
+
+        public void Greater_or_equal_than_operator_is_working(string leftDate, string leftTimeZone, string rightDate, string rightTimeZone, bool expected)
+        {
+            //Arrange 
+            var leftDateTime = DateTime.Parse(leftDate);
+            var left = new DateTimeZone(leftDateTime, TimeZoneInfo.FindSystemTimeZoneById(leftTimeZone));
+
+            var rightDateTime = DateTime.Parse(rightDate);
+            var right = new DateTimeZone(rightDateTime, TimeZoneInfo.FindSystemTimeZoneById(rightTimeZone));
+
+            //Act
+            var result = left >= right;
+
+
+            //Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC", true)]
+
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 12:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "03 02, 2005 22:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 12:37:00", "UTC+12", "04 02, 2005 21:37:00", "UTC", false)]
+
+        [InlineData("05 02, 2005 21:37:00", "UTC", "05 02, 2005 22:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "05 02, 2005 09:37:00", "UTC", false)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC+12", false)]
+
+        public void Equals_operator_is_working(string leftDate, string leftTimeZone, string rightDate, string rightTimeZone, bool expected)
+        {
+            //Arrange 
+            var leftDateTime = DateTime.Parse(leftDate);
+            var left = new DateTimeZone(leftDateTime, TimeZoneInfo.FindSystemTimeZoneById(leftTimeZone));
+
+            var rightDateTime = DateTime.Parse(rightDate);
+            var right = new DateTimeZone(rightDateTime, TimeZoneInfo.FindSystemTimeZoneById(rightTimeZone));
+
+            //Act
+            var result = left == right;
+
+
+            //Assert
+            result.Should().Be(expected);
+        }
+
+        [Theory]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC", false)]
+
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 12:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "03 02, 2005 22:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 12:37:00", "UTC+12", "04 02, 2005 21:37:00", "UTC", true)]
+
+        [InlineData("05 02, 2005 21:37:00", "UTC", "05 02, 2005 22:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "05 02, 2005 09:37:00", "UTC", true)]
+        [InlineData("04 02, 2005 21:37:00", "UTC", "04 02, 2005 21:37:00", "UTC+12", true)]
+
+        public void Not_Equals_operator_is_working(string leftDate, string leftTimeZone, string rightDate, string rightTimeZone, bool expected)
+        {
+            //Arrange 
+            var leftDateTime = DateTime.Parse(leftDate);
+            var left = new DateTimeZone(leftDateTime, TimeZoneInfo.FindSystemTimeZoneById(leftTimeZone));
+
+            var rightDateTime = DateTime.Parse(rightDate);
+            var right = new DateTimeZone(rightDateTime, TimeZoneInfo.FindSystemTimeZoneById(rightTimeZone));
+
+            //Act
+            var result = left != right;
+
+
+            //Assert
+            result.Should().Be(expected);
+        }
     }
 }

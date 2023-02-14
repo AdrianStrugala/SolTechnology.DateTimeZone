@@ -10,9 +10,9 @@
 
         //DONE) add ToString() with formatting extensions
 
-        //4) arithmetic operations: + - compare
+        //DONE) arithmetic operations: + - compare
 
-        //5) add conversion between time zones (in specific: utc)
+        //DONE) add conversion between time zones (in specific: utc)
 
         //6) ToDateTime extensions
 
@@ -22,7 +22,7 @@
 
         //9) Article
 
-        //10) Possibility to define own time zone? 
+        //10) Possibility to define own time zone? -------------------
 
 
         //Features:

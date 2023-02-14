@@ -1,6 +1,6 @@
 namespace SolTechnology.Time.UnitTests
 {
-    public class UnitTest1
+    public class TestTest
     {
         [Fact]
         public void Test1()
