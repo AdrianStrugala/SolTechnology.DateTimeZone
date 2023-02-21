@@ -14,7 +14,7 @@
 
         //DONE) add conversion between time zones (in specific: utc)
 
-        //6) ToDateTime extensions
+        //DONE) ToDateTime extensions
 
         //7) Parse extensions
 
