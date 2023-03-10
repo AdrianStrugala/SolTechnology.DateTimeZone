@@ -1,7 +1,4 @@
-﻿using FluentAssertions;
-using SolTechnology.Time.Zone;
-
-namespace SolTechnology.Time.UnitTests
+﻿namespace SolTechnology.Time.UnitTests
 {
     public class DateTimeZoneArithmeticTests
     {
