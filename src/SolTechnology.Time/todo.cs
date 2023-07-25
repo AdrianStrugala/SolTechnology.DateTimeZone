@@ -1,6 +1,6 @@
 ﻿namespace SolTechnology.Time
 {
-    internal class todo
+    internal class TODO
     {
         //TODO
 
@@ -16,7 +16,7 @@
 
         //DONE) ToDateTime extensions
 
-        //7) Parse extensions
+        //DONE) Parse extensions
 
         //8) CI/CD
 

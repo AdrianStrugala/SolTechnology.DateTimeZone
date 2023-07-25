@@ -3,7 +3,7 @@ namespace SolTechnology.Time.UnitTests
     public class TestTest
     {
         [Fact]
-        public void Test1()
+        public void Used_for_tests_creation()
         {
             var x = TimeZoneInfo.GetSystemTimeZones();
             var y = x.Select(a => a.DisplayName);

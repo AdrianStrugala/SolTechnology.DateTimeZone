@@ -1,6 +1,4 @@
-﻿using System.Reflection;
-
-namespace SolTechnology.Time
+﻿namespace SolTechnology.Time
 {
     public readonly partial record struct DateTimeZone
     {
