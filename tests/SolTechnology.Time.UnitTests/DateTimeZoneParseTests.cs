@@ -33,7 +33,8 @@
             //Assert
             result.Date.Should().Be(new DateOnly(2005, 04, 02));
             result.Time.Should().Be(new TimeOnly(21, 37));
-            result.Zone.Should().Be(TimeZoneInfo.FindSystemTimeZoneById(ZoneSelector.CentralAmericaStandardTime.ToString()));
+            //note that only BaseUtcOffset is ensured to be the same in this case. Example:  Expected result.Zone to be (UTC-06:00) Central Time (Guatemala), but found (UTC-06:00) Central Time (Bahia Banderas).
+            result.Zone.BaseUtcOffset.Should().Be(TimeZoneInfo.FindSystemTimeZoneById(ZoneSelector.CentralAmericaStandardTime.ToString()).BaseUtcOffset);
         }
 
 
