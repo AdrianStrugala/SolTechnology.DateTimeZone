@@ -5,9 +5,14 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolTechnology.Time", "src\SolTechnology.Time\SolTechnology.Time.csproj", "{6E3389F0-0C0E-40F8-98A5-9F9DC5B6DF96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SolTechnology.Time.UnitTests", "tests\SolTechnology.Time.UnitTests\SolTechnology.Time.UnitTests.csproj", "{9917FAAF-0D3C-4C46-B695-3138F2913D2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SolTechnology.Time.UnitTests", "tests\SolTechnology.Time.UnitTests\SolTechnology.Time.UnitTests.csproj", "{9917FAAF-0D3C-4C46-B695-3138F2913D2C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{98081C48-4F36-483F-89DA-020367B589B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{3102DAE7-9D63-44F5-9EFC-DC4557843288}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

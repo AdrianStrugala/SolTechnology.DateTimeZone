@@ -49,6 +49,19 @@ namespace SolTechnology.Time
             Zone = zone;
         }
 
+        public static DateTimeZone UtcNow => new(DateTime.UtcNow);
+
+
+        public static DateTimeZone Now
+        {
+            get
+            {
+                var utcNow = UtcNow;
+                var localTimeZone = utcNow.IdentifyLocalTimeZone();
+                return utcNow.ToTimeZone(localTimeZone);
+            }
+        }
+
         private TimeZoneInfo IdentifyLocalTimeZone()
         {
             var localTimezone = TimeZoneInfo.Local;
